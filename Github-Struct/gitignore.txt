@@ -1,0 +1,31 @@
+# Model weights
+models/
+*.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+
+# Large data files
+enwiki*.bz2
+enwiki*.xml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.egg-info/
+
+# Windows paths
+K:/
+
+# Generated outputs (keep only the hires heatmap)
+results/
+manifold_scan.npz
+manifold_*_scan.npz
+*_tokens.json
+
+# Secrets
+*.key
+*.pem

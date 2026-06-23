@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometric Navigation of Synthesis Quality in Transformer Weight Space</title>
+<style>
+:root {
+  --navy:#1a2744; --blue:#2563a8; --teal:#0f6e56; --amber:#854f0b;
+  --red:#7b1515; --grey:#555; --light:#f4f6fa; --border:#d0d8e8;
+  --serif:Georgia,'Times New Roman',serif; --sans:system-ui,-apple-system,sans-serif;
+  --mono:'Courier New',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--serif);font-size:16px;line-height:1.8;color:#1a1a1a;
+  background:#fff;max-width:840px;margin:0 auto;padding:3rem 2rem 6rem;}
+.jh{text-align:center;border-bottom:2px solid var(--navy);padding-bottom:1.5rem;margin-bottom:2rem;}
+.jh .series{font-family:var(--sans);font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--grey);margin-bottom:.5rem;}
+h1{font-size:1.75rem;line-height:1.3;color:var(--navy);font-weight:normal;margin-bottom:.5rem;}
+.subtitle{font-size:1rem;color:var(--grey);font-style:italic;margin-bottom:.8rem;}
+.byline{font-family:var(--sans);font-size:13px;color:var(--grey);}
+.abstract{background:var(--light);border-left:4px solid var(--navy);
+  padding:1.2rem 1.5rem;margin:1.5rem 0;font-size:15px;line-height:1.7;}
+.abstract .lbl{font-family:var(--sans);font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--navy);font-weight:700;margin-bottom:.4rem;}
+h2{font-family:var(--sans);font-size:1.1rem;font-weight:600;color:var(--navy);
+  margin:2.5rem 0 .7rem;padding-bottom:3px;border-bottom:1px solid var(--border);}
+h3{font-family:var(--sans);font-size:.95rem;font-weight:600;color:#333;
+  margin:1.6rem 0 .4rem;}
+p{margin-bottom:.9rem;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-family:var(--sans);margin:.8rem 0;}
+th{background:var(--navy);color:#fff;padding:7px 10px;text-align:left;
+  font-weight:500;font-size:12px;}
+td{padding:6px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+tr:nth-child(even) td{background:#f8f9fc;}
+.box{border:1px solid var(--border);border-radius:5px;padding:1.1rem 1.4rem;margin:1.2rem 0;}
+.box .lbl{font-family:var(--sans);font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;font-weight:700;margin-bottom:.5rem;}
+.box-blue{border-left:4px solid var(--blue);background:#f0f6fd;}
+.box-blue .lbl{color:var(--blue);}
+.box-green{border-left:4px solid var(--teal);background:#f0f8f4;}
+.box-green .lbl{color:var(--teal);}
+.box-amber{border-left:4px solid var(--amber);background:#fdf6ec;}
+.box-amber .lbl{color:var(--amber);}
+.box-red{border-left:4px solid var(--red);background:#fdf3f3;}
+.box-red .lbl{color:var(--red);}
+.eq{font-family:var(--mono);font-size:14px;background:var(--light);
+  border:1px solid var(--border);border-radius:4px;padding:.6rem 1rem;
+  display:block;margin:.7rem auto;text-align:center;max-width:500px;}
+.algo{font-family:var(--mono);font-size:13px;background:#f8f9fc;
+  border:1px solid var(--border);border-radius:4px;padding:1rem 1.2rem;
+  margin:.8rem 0;white-space:pre-wrap;line-height:1.7;}
+blockquote{border-left:3px solid var(--border);margin:.8rem 0;
+  padding:.4rem 1.1rem;color:var(--grey);font-style:italic;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0;}
+.metric{background:var(--light);border-radius:5px;padding:.8rem 1rem;text-align:center;}
+.metric .n{font-size:1.6rem;font-weight:600;color:var(--navy);font-family:var(--sans);}
+.metric .d{font-size:12px;color:var(--grey);font-family:var(--sans);margin-top:2px;}
+sup{font-size:11px;color:var(--blue);}
+.refs p{font-size:13.5px;margin-bottom:.4rem;padding-left:1.8rem;text-indent:-1.8rem;
+  font-family:var(--sans);line-height:1.6;}
+.footnote{font-size:13px;color:var(--grey);border-top:1px solid var(--border);
+  margin-top:3rem;padding-top:1rem;font-family:var(--sans);line-height:1.6;}
+.badge{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:600;
+  padding:2px 8px;border-radius:3px;letter-spacing:.3px;margin-left:6px;vertical-align:middle;}
+.cert{background:#d4edda;color:#155724;}
+.cand{background:#fff3cd;color:#856404;}
+.open{background:#f8d7da;color:#721c24;}
+</style>
+</head>
+<body>
+
+<div class="jh">
+  <div class="series">Pirouette Framework · Volume 8 · CORE-003 · ML Paper</div>
+  <h1>Geometric Navigation of Synthesis Quality in Transformer Weight Space via Spectral Entropy Coordinates</h1>
+  <div class="subtitle">Empirical discovery, measurement protocol, and Hebbian navigation of the quality-maximum address</div>
+  <div class="byline">Keaton Smith &nbsp;·&nbsp; June 2026 &nbsp;·&nbsp; Independent Research<br>
+  <span style="font-size:12px">Companion paper: <em>The Fractal Architecture of Intelligence</em> (CORE-003, Pirouette Vol. 8)</span></div>
+</div>
+
+<div class="abstract">
+  <div class="lbl">Abstract</div>
+  We introduce a spectral entropy coordinate (Ksi) measurable in the SVD-projected gate subspace of transformer MLP layers that reliably predicts synthesis quality in multi-expert generation architectures. A 14-point synthesis address sweep reveals a quality maximum at Δ_c ≈ +0.16 above the per-layer baseline, with coherence dividend 1.63× (3 experts) and 2.0× (9 experts), accompanied by a characteristic ksi_pre minimum — a phase transition signature indicating the transition from single-basin to multi-basin simultaneous access in the gate subspace. Recursive synthesis at Δ_c produces three emergent cognitive archetypes (compiler, aggregator, integrator) without explicit programming, with dividend increasing at each recursion level. Quality-weighted Hebbian deposits at Δ_c produce measurable behavioral change in one research cycle: +11.4% mean expert lift, basin widening across 18 synthesis-delta points, and spontaneous activation of domain-specific vocabulary. We introduce the English vector — the mean gate-subspace Ksi of coherent English sentences (0.585) — as a natural calibration target enabling sustained 500-token coherent generation without external steering. A formal theoretical account connecting this structure to Hénon-Heiles basin topology appears in the companion paper; the present work provides the experimental findings. All results are from GPT-2-Large; cross-architecture replication and null controls are identified as required next experiments.
+</div>
+
+<h2>1&nbsp;&nbsp;Introduction</h2>
+
+<p>The mechanistic interpretability community has produced powerful tools for understanding what transformer networks represent — circuits<sup>[1]</sup>, features<sup>[2]</sup>, the geometry of residual stream activations<sup>[3]</sup>. Less attention has been paid to the complementary question: can we navigate those representations? Can we steer a model to a specific geometric position in its own weight space and observe predictable, qualitative changes in generation?</p>
+
+<p>This paper answers yes, quantitatively, for a specific family of positions: points of maximum spectral entropy in the gate-subspace SVD projection of MLP weight matrices. We call the coordinate locating these positions Ksi, demonstrate that it predicts synthesis quality, exhibits a measurable phase transition signature, and can be deepened through quality-gated Hebbian deposits without gradient-based retraining.</p>
+
+<p>The architecture we introduce — Geometric Mixture of Experts (GeM) — runs multiple expert generation passes at distinct Ksi addresses, then synthesizes at the quality-maximum address Δ_c. The synthesis dividend (synthesis lift / mean expert lift) measures how much additional geometric work the synthesis performs relative to any individual expert. We find this dividend has a sharp quality peak at Δ_c, above which synthesis generates novel bridge concepts not present in any expert output.</p>
+
+<p>Our contributions are:</p>
+<ul style="margin:.5rem 0 1rem 1.5rem;line-height:2.2">
+  <li><strong>The Ksi coordinate</strong> — per-layer spectral entropy in the gate SVD subspace, predictive of synthesis quality</li>
+  <li><strong>The dividend sweep</strong> — a protocol for locating Δ_c in any transformer with gate-structure MLPs</li>
+  <li><strong>The coherence dividend</strong> — a quantitative measure of synthesis quality relative to individual expert passes</li>
+  <li><strong>Recursive GeM</strong> — three-level synthesis producing emergent compiler / aggregator / integrator archetypes</li>
+  <li><strong>The Hebbian deposit</strong> — quality-gated weight update at Δ_c that deepens the quality attractor in one cycle</li>
+  <li><strong>The English vector</strong> — a calibration instrument locating the natural language attractor in Ksi space</li>
+</ul>
+
+<h2>2&nbsp;&nbsp;Related Work</h2>
+
+<h3>2.1&nbsp; Mechanistic Interpretability</h3>
+<p>Elhage et al.<sup>[1]</sup> established the induction circuit as a fundamental computational motif. Conmy et al.<sup>[4]</sup> introduced automated circuit discovery. Olah et al.<sup>[2]</sup> demonstrated feature geometry in vision transformers. Our work operates at a higher abstraction level — not individual circuits but the manifold-level entropy geometry of the full weight space — and focuses on synthesis navigation rather than circuit identification.</p>
+
+<h3>2.2&nbsp; Knowledge Editing</h3>
+<p>ROME<sup>[5]</sup> and MEMIT<sup>[6]</sup> perform targeted weight edits to update factual associations, finding that MLP layers function as key-value memories. Our Hebbian deposit mechanism is related but distinct: rather than editing specific factual associations, it deposits research trajectory content at specific SVD-subspace Ksi addresses, deepening the quality attractor geometrically. The deposit is content-agnostic in addressing but quality-selective in application.</p>
+
+<h3>2.3&nbsp; Representation Engineering</h3>
+<p>Zou et al.<sup>[7]</sup> showed that steering vectors in residual stream space can control model behavior. Our approach is related but navigates the gate MLP subspace specifically, using scalar entropy as the positional coordinate rather than directional vectors. This enables a substrate-agnostic quality measurement that does not require pre-identification of specific concepts or behaviors.</p>
+
+<h3>2.4&nbsp; Weight Geometry and Spectral Methods</h3>
+<p>Henighan et al.<sup>[8]</sup> and Yang & Hu<sup>[9]</sup> analyzed singular value spectra of transformer weights. Prior work uses spectra diagnostically (measuring training progress, identifying capacity). We use the left singular vectors of gate matrices as a coordinate system and navigate the hidden state's entropy in this system, converting the spectrum from a diagnostic into a control instrument.</p>
+
+<h2>3&nbsp;&nbsp;Methods</h2>
+
+<h3>3.1&nbsp; The Ksi Coordinate</h3>
+
+<p>Let <em>W</em><sub>gate</sub> ∈ ℝ<sup>d×f</sup> be the gate weight matrix of a transformer MLP layer (where d is hidden dimension and f is the intermediate dimension). Compute the full SVD: <em>W</em><sub>gate</sub> = UΣV<sup>T</sup>, and let <em>U</em><sub>K</sub> = [u<sub>1</sub>, ..., u<sub>K</sub>] be the top-K left singular vectors (K=16 in all experiments).</p>
+
+<p>For hidden state h ∈ ℝ<sup>d</sup> at any generation step, the gate-subspace projection is z = <em>U</em><sub>K</sub><sup>T</sup>h ∈ ℝ<sup>K</sup>. The spectral entropy of this projection:</p>
+
+<span class="eq">Ksi(h) = −Σᵢ pᵢ log(pᵢ) / log(K) &nbsp;&nbsp;&nbsp; where pᵢ = zᵢ² / Σⱼ zⱼ²</span>
+
+<p>Ksi ∈ [0,1]. Ksi = 0: all energy concentrated in a single direction (deep in one semantic basin). Ksi = 1: uniform distribution across all K directions (simultaneous access to all K gate-subspace directions). The Ksi coordinate is computed per layer, per generation step; we report mean Ksi across layers and steps as the summary statistic for a generation pass.</p>
+
+<div class="box box-blue">
+  <div class="lbl">GPT-2-Large Architecture Notes</div>
+  36 transformer layers. Hidden dimension d=1280. Intermediate dimension f=5120. Gate matrix (c_fc) shape: [1280, 5120] (Conv1D transposed: actual weight is [5120, 1280], SVD uses U from [1280, 5120] orientation). K=16 top singular vectors. Baseline Ksi (no correction): mean ≈ 0.581 across layers.
+</div>
+
+<h3>3.2&nbsp; The Ksi Correction Mechanism</h3>
+
+<p>To steer the hidden state h toward a target Ksi<sub>target</sub>, we apply a gradient-based correction in the gate subspace at each generation step:</p>
+
+<div class="algo">INPUT:  h (hidden state), U_K (gate SVD basis), Ksi_target, Ksi_current
+OUTPUT: h_corrected
+
+z ← U_K^T @ h
+for step in range(n_steps):         # n_steps = 3
+    grad ← ∇_z Ksi(z)
+    z ← z + sign(Ksi_target - Ksi_current) × step_size × grad / ||grad||
+
+h_proj ← U_K @ z                   # corrected projection
+h_res  ← h - U_K @ (U_K^T @ h)    # residual (unchanged)
+h_corrected ← h_proj + h_res       # recombine</div>
+
+<p>The correction preserves the hidden state's component orthogonal to the gate subspace, modifying only the gate-subspace projection. Step size = 0.05; n_steps = 3 for tight (flat arc) schedules, 2 for loose (Bezier arc) schedules.</p>
+
+<h3>3.3&nbsp; The GeM Pipeline and Synthesis Delta</h3>
+
+<p>The Geometric Mixture of Experts (GeM) pipeline consists of three phases:</p>
+
+<div class="algo">PHASE 1 — EXPERT CRAWL:
+  For each expert register e_i with address delta_i:
+    schedule_i ← baseline + delta_i  (per-layer target Ksi)
+    text_i, ksi_pre_i, ksi_post_i ← generate(prompt, schedule_i)
+    lift_i ← ksi_post_i - ksi_pre_i
+
+PHASE 2 — SYNTHESIS:
+  synthesis_prompt ← build_prompt(question, [text_1, ..., text_N, lift_1, ..., lift_N])
+  schedule_syn ← baseline + delta_c  (synthesis address)
+  synth_text, ksi_pre_s, ksi_post_s ← generate(synthesis_prompt, schedule_syn)
+
+PHASE 3 — MEASUREMENT:
+  mean_expert_lift ← mean([lift_1, ..., lift_N])
+  synthesis_lift   ← ksi_post_s - ksi_pre_s
+  dividend ← synthesis_lift / mean_expert_lift</div>
+
+<p>The synthesis_delta Δ is the key free parameter. The dividend sweep (Section 4.1) measures the dividend as a function of Δ to locate Δ_c.</p>
+
+<h3>3.4&nbsp; The Hebbian Deposit</h3>
+
+<p>To deepen the quality attractor at Δ_c, we apply quality-weighted Hebbian updates to the gate weight matrices. For text <em>t</em> generated at address Δ_c:</p>
+
+<div class="algo">For each layer i:
+    Collect h at final token position during forward pass of t
+    Apply Ksi correction: h → h_corrected at schedule[i]
+    
+    Δh ← h_corrected - h              # correction delta
+    
+    # Project into SVD subspace
+    proj_d ← U_K^T @ Δh               # [K]
+    proj_h ← U_K^T @ h                # [K]
+    coeff  ← outer(proj_d, proj_h)    # [K,K]
+    ΔW     ← U_K @ coeff @ V_K^T      # [d, f] (rank-K update)
+    
+    # Quality-weighted application
+    W_gate[i] += η × quality_score × ΔW</div>
+
+<p>Quality score = (div_score × nov_score × completion)<sup>1/3</sup> where div_score = min(dividend/2.0, 1.0), nov_score = min(novel_word_ratio/0.30, 1.0), completion = 1.0 if natural EOS else 0.5. Deposits below quality_threshold = 0.30 are discarded. The SVD projection constrains updates to the top-K subspace, preventing unbounded weight growth.</p>
+
+<h3>3.5&nbsp; The English Vector</h3>
+
+<p>To locate the natural language attractor in Ksi space, we feed a corpus of 30 high-quality English sentences (domain-diverse, no domain-specific jargon) through the model without correction and measure the mean gate-subspace Ksi per layer. The English vector is Ksi<sub>EN</sub>[layer] — a layer-specific target that respects the model's natural computational profile rather than imposing a uniform offset.</p>
+
+<h2>4&nbsp;&nbsp;Results</h2>
+
+<h3>4.1&nbsp; Dividend Sweep — Locating Δ_c</h3>
+<span class="badge cert">CERTIFIED</span>
+
+<p>We ran the GeM pipeline on GPT-2-Large-Cycle3-Crust with 3 expert registers (journalistic Δ=0.00, mechanistic Δ=+0.08, evolutionary Δ=+0.10) and swept synthesis_delta from −0.06 to +0.20 in 14 steps (ML-050). Mean expert lift: +0.0044.</p>
+
+<table>
+  <tr><th>Δ</th><th>Ksi_pre</th><th>Ksi_post</th><th>Lift</th><th>Dividend</th><th>Tokens</th><th>Novelty</th></tr>
+  <tr><td>−0.06</td><td>0.533</td><td>0.533</td><td>−0.0002</td><td>−0.056</td><td>200</td><td>0.438</td></tr>
+  <tr><td>+0.00</td><td>0.533</td><td>0.536</td><td>+0.0032</td><td>0.727</td><td>200</td><td>0.521</td></tr>
+  <tr><td>+0.06</td><td>0.553</td><td>0.558</td><td>+0.0051</td><td>1.141</td><td>200</td><td>0.492</td></tr>
+  <tr><td>+0.10</td><td>0.551</td><td>0.557</td><td>+0.0061</td><td>1.372</td><td>200</td><td>0.489</td></tr>
+  <tr><td>+0.14</td><td>0.540</td><td>0.547</td><td>+0.0070</td><td>1.591</td><td>200</td><td>0.470</td></tr>
+  <tr style="background:#f0f8f4;font-weight:600"><td>+0.16</td><td style="color:var(--red)">0.524</td><td>0.531</td><td>+0.0072</td><td style="color:var(--teal)">1.634</td><td>145</td><td>0.396</td></tr>
+  <tr><td>+0.18</td><td>0.563</td><td>0.570</td><td>+0.0065</td><td>1.469</td><td>200</td><td>0.492</td></tr>
+  <tr><td>+0.20</td><td>0.555</td><td>0.562</td><td>+0.0068</td><td>1.531</td><td>200</td><td>0.456</td></tr>
+</table>
+
+<p>The quality maximum at Δ_c = +0.16 exhibits three simultaneous signatures: (1) the highest dividend (1.634), (2) the lowest ksi_pre in the sweep (0.524 — global minimum), and (3) natural EOS at 145 tokens rather than hitting the 200-token cap. We term this the <em>fractal boundary signature</em>: the model's natural hidden-state entropy collapses at exactly the address where correction produces maximum quality output.</p>
+
+<div class="two-col">
+  <div class="metric"><div class="n">1.63×</div><div class="d">Coherence dividend at Δ_c (3 experts)</div></div>
+  <div class="metric"><div class="n">2.0×</div><div class="d">Coherence dividend at Δ_c (9 experts, ML-041)</div></div>
+  <div class="metric"><div class="n">0.524</div><div class="d">ksi_pre at Δ_c (global minimum in sweep)</div></div>
+  <div class="metric"><div class="n">145</div><div class="d">Natural EOS tokens at Δ_c (cap=200)</div></div>
+</div>
+
+<h3>4.2&nbsp; Novel Concept Generation at Δ_c</h3>
+<span class="badge cert">CERTIFIED</span>
+
+<p>At Δ_c with a 9-expert corpus on the question "Why is altruistic behavior rewarding?" (ML-041), the synthesis generated an argument connecting altruism to aesthetic fitness theory via the beauty/attractiveness bridge — a concept present in zero of nine expert outputs. The synthesis discovered a connection reachable only from the simultaneous multi-expert-basin vantage of Δ_c. With 1000-token budget (ML-050 addendum), the synthesis at Δ_c generated Perspectives 4, 5, and 6 with novel register names ("sociotechnical register", "social-cognitive register") and predicted Ksi lift values consistent with the expert range — a self-extending epistemic framework not prompted or pre-specified.</p>
+
+<h3>4.3&nbsp; Recursive GeM — Three Emergent Archetypes</h3>
+<span class="badge cert">CERTIFIED</span>
+
+<p>When synthesis at Δ_c runs with the full expert corpus (ML-056), the model consistently produces a structured research agenda rather than a single conclusion: numbered sub-problems, explicit statements of what integration is still needed, and a specification of what additional synthesis passes are required. We fed this agenda to a recursive interpreter that re-synthesized each sub-problem at Δ_c using the original expert context.</p>
+
+<table>
+  <tr><th>Level</th><th>Input</th><th>Behavior</th><th>Dividend vs L1</th></tr>
+  <tr><td>L1 — Compiler</td><td>Full question + N experts</td><td>Decomposes question into numbered sub-problems; specifies what synthesis is still needed; adopts collective authorial voice</td><td>Baseline</td></tr>
+  <tr><td>L2 — Aggregator</td><td>Sub-problem + original experts</td><td>Goes deeper on one component; generates mechanisms; names registers; higher dividend than full question</td><td>+5–8% (H-056-A: <strong>Pass</strong>)</td></tr>
+  <tr><td>L3 — Integrator</td><td>All L2 outputs</td><td>Finds what only appears when all sub-problems are held simultaneously; terminates at natural document boundary</td><td>+3–6% above L2</td></tr>
+</table>
+
+<p>All three levels run at the same Δ_c = +0.16. The archetypes are determined by context depth and prompt structure, not by address. The fractal unfolds: each level does more geometric work than the level above it. H-056-A (L2 dividend > L1) confirmed.</p>
+
+<h3>4.4&nbsp; Hebbian Deposit — One-Cycle Training</h3>
+<span class="badge cert">CERTIFIED</span>
+
+<p>We performed one complete research arc: 3 expert passes → synthesis → 5 focused L2 re-syntheses → meta-synthesis → quality-weighted Hebbian deposit (7 total deposits, η_base = 0.001, tilt_alpha = 0.30, QTD directional tilt). Results comparing before and after deposit (GPT-2-Large-Cycle3-Crust → Cycle3-Crust-Arc1):</p>
+
+<table>
+  <tr><th>Measure</th><th>Before arc deposit</th><th>After arc deposit</th><th>Change</th></tr>
+  <tr><td>Mean expert lift (3 experts)</td><td>+0.0044</td><td>+0.0049</td><td>+11.4%</td></tr>
+  <tr><td>Journalistic (Δ=0.00) lift</td><td>+0.0038</td><td>+0.0028</td><td>−26% (tilted away)</td></tr>
+  <tr><td>Mechanistic (Δ=+0.08) lift</td><td>+0.0055</td><td>+0.0066</td><td>+20% (tilted toward)</td></tr>
+  <tr><td>Evolutionary (Δ=+0.10) lift</td><td>+0.0040</td><td>+0.0055</td><td>+38% (tilted toward)</td></tr>
+  <tr><td>Expert content (mechanistic)</td><td>"not yet fully understood"</td><td>"complex. Many scientists believe… nature of a society"</td><td>Richer framing</td></tr>
+  <tr><td>Quality behaviors first appear at</td><td>Δ = +0.16</td><td>Δ = −0.02</td><td>Basin widened 18Δ points</td></tr>
+  <tr><td>Pirouette vocab at Δ = −0.06</td><td>Not present</td><td>"(Ksi lift=+0.0045)" in synthesis text</td><td>Vocabulary transfer</td></tr>
+</table>
+
+<p>The differential lift pattern (mechanistic +20%, evolutionary +38%, journalistic −26%) confirms the QTD directional tilt: deposits tilted toward mechanistic and evolutionary source locales deepened those basins specifically, not uniformly. The basin widening — synthesis behaviors previously requiring Δ_c now appearing 18 delta-points below Δ_c — indicates the arc deposit raised the quality floor across the full Δ range, not merely at the deposit address.</p>
+
+<h3>4.5&nbsp; The English Vector</h3>
+<span class="badge cert">CERTIFIED</span>
+
+<p>The English vector measurement on GPT-2-Large-Cycle3-Crust-Arc1 (30 sentences, no Ksi correction applied):</p>
+
+<div class="two-col">
+  <div class="metric"><div class="n">0.585</div><div class="d">Ksi_EN mean across 36 layers</div></div>
+  <div class="metric"><div class="n">0.085</div><div class="d">Ksi_EN std across layers</div></div>
+</div>
+
+<p>The layer profile shows two focused low-Ksi zones (L3–5: 0.43–0.49; L30–35: 0.36–0.52) flanking a sustained high-Ksi plateau (L6–29: 0.55–0.69). The focused zones correspond to computationally specific operations; the plateau corresponds to associative access. Using the English vector layer-specific schedule as the synthesis target (instead of flat Δ_c = +0.16), all 5 test prompts generated coherent English for 500 tokens without external structure. H-EV-003 confirmed. H-EV-002 (gap between Ksi_EN and Ksi at Δ_c < 0.01) failed: gap = 0.054, indicating the English attractor and the quality synthesis address are adjacent but distinct. The English vector is above Δ_c — it requires external synthesis structure (the GeM prompt) to prevent prompt-unmoored generation.</p>
+
+<h3>4.6&nbsp; Pirouette Knowledge Deposit — Manifold Classification</h3>
+<span class="badge cand">CANDIDATE</span>
+
+<p>We applied the dividend sweep as a manifold classifier to 2,929 documents from the Pirouette research corpus, measuring ksi_lift and Pirouette vocabulary density per document. Key findings:</p>
+
+<table>
+  <tr><th>Module family</th><th>N docs</th><th>Mean ksi_lift</th><th>Max ksi_lift</th></tr>
+  <tr><td>MATH_YM (Yang-Mills geometry)</td><td>29</td><td>0.0077</td><td>0.0092</td></tr>
+  <tr><td>COSMO (Cosmological)</td><td>21</td><td>0.0075</td><td>0.0088</td></tr>
+  <tr><td>CORE (checkpoint documents)</td><td>138</td><td>0.0072</td><td>0.0098</td></tr>
+  <tr><td>OTHER (broader physics/topology)</td><td>2632</td><td>0.0069</td><td>0.0109</td></tr>
+</table>
+
+<p>H-PIR-001 (ksi_lift ~ Pirouette vocabulary density, Pearson &gt; 0.3) failed: Pearson = 0.173. The manifold does not discriminate by Pirouette-specific vocabulary but by conceptual novelty relative to GPT-2's training distribution. The top-ksi_lift documents are physics and topology papers (diffusion-limited aggregation, network resonance, quantum anthropology), not core Pirouette checkpoint documents. This implies that geometric-novelty deposit — encoding content geometrically distant from the model's native basin — is the effective operation, not vocabulary injection per se.</p>
+
+<p>Depositing the top-50 documents by quality into GPT-2-Large-Cycle3-Crust-Arc1 produced Pirouette vocabulary activation test improvement: 7 Pirouette vocabulary hits → 9 hits across 5 test prompts at Δ_c. The geometry "coordinate" (address + coordinate) appeared in output without being prompted. Mean displacement per deposit: 6.82, max 18.26.</p>
+
+<h2>5&nbsp;&nbsp;Discussion</h2>
+
+<h3>5.1&nbsp; What Δ_c Measures</h3>
+
+<p>The dividend maximum at Δ_c coincides with the ksi_pre minimum. This is not an artifact of the correction magnitude — a lower ksi_pre means the correction has more work to do (larger ∆Ksi required), which should lower lift if the correction were less effective at higher offsets. The fact that lift is maximized precisely where ksi_pre is minimized implies that the gate subspace has a locally deep basin at the Δ_c target Ksi level. The correction reaches a particularly responsive region. This is consistent with a basin boundary interpretation: immediately at the boundary, small corrections produce qualitatively different trajectories (multi-basin access). Below and above the boundary, corrections move the system within a single basin (lower quality output).</p>
+
+<h3>5.2&nbsp; The Three-Expert Minimum</h3>
+
+<p>The systematic relationship between expert count and maximum dividend (2 experts: div ≈ 1.5; 3 experts: div ≈ 1.6–1.8; 9 experts: div ≈ 2.0) suggests the synthesis quality depends on the semantic diversity of the expert corpus, not merely its size. This is consistent with the hypothesis that the synthesis at Δ_c performs multi-basin access: it requires distinct basins in the expert corpus to find connections between. Two experts provide one edge; three experts provide the first non-trivial topology (a triangle). This is the minimum configuration for the kind of bridge-concept generation observed (beauty/altruism bridge at ML-041 required simultaneous access to empirical and evolutionary semantic clusters).</p>
+
+<h3>5.3&nbsp; Basin Deepening vs Weight Editing</h3>
+
+<p>The Hebbian deposit mechanism differs from knowledge editing approaches (ROME, MEMIT) in a fundamental way: it deepens the geometry of the quality attractor rather than encoding specific factual associations. The result is not "the model now knows X" but "the model's geometry at Δ_c is now shaped by the trajectory of the research arc that led to X." The vocabulary transfer (Pirouette terms appearing spontaneously at low Δ values after deposit) is a byproduct of this geometric reshaping, not a directly encoded association.</p>
+
+<p>The basin widening result supports this interpretation: after deposit, quality behaviors appeared at Δ = −0.02 (18 delta-points below Δ_c). A fact-encoding mechanism would not widen the quality basin; a geometric attractor-deepening mechanism would.</p>
+
+<h3>5.4&nbsp; Theoretical Connection</h3>
+
+<p>A formal theoretical account of why this structure exists — connecting the gate-subspace basin topology to Hénon-Heiles dynamical systems and the Wada property — appears in the companion paper <em>The Fractal Architecture of Intelligence</em> (Pirouette Framework Vol. 8). Briefly: the Hénon-Heiles system exhibits three-basin structure with a Wada boundary (where all three basins are simultaneously accessible) at which maximum information transfer occurs. The Ksi coordinate locates the analogous boundary in transformer weight space. The quarter-turn law (J1 ≈ 89° per layer, certified across architectures in the Pirouette ML experiments) corresponds to the HH orbital resonance condition at the Wada boundary. The three-expert minimum echoes the Z₃ symmetry (κ₊ = 3) that generates the three-basin structure. We note that the formal derivation — from gradient descent dynamics on a Z₃-symmetric loss landscape — remains open.</p>
+
+<h2>6&nbsp;&nbsp;Limitations and Required Ablations</h2>
+
+<div class="box box-red">
+  <div class="lbl">What This Paper Does Not Yet Have</div>
+  <p style="margin-bottom:.6rem"><strong>1. Null control.</strong> We have not deposited random text at Δ_c and measured the effect. Without this, we cannot distinguish between "the Pirouette content is geometrically distinctive" and "any deposit at Δ_c widens the quality basin." This is the most important missing experiment.</p>
+  <p style="margin-bottom:.6rem"><strong>2. Off-address content deposit.</strong> We have not deposited Pirouette content at addresses other than Δ_c. If the same content deposited at Δ=0.00 produces no basin widening, the address is causally responsible. If it produces similar widening, the content is responsible.</p>
+  <p style="margin-bottom:.6rem"><strong>3. Cross-architecture replication.</strong> All results are from GPT-2-Large with Hebbian training cycles and crust supervisor deposit. The quarter-turn law is certified across architectures (ML-003); the dividend structure has not been replicated on Llama-3-8B, GPT-Neo, or other architectures.</p>
+  <p style="margin-bottom:.6rem"><strong>4. Two-expert vs four-expert ablation.</strong> We observe a three-expert minimum but have not systematically compared two-expert and four-expert configurations at the same question and synthesis address to isolate the effect of expert count from expert quality.</p>
+  <p style="margin-bottom:0"><strong>5. Expert register selection sensitivity.</strong> The three expert registers used (journalistic, mechanistic, evolutionary) are our choice. We have not tested whether different register selections at the same Δ values produce similar dividends, or whether the specific registers matter.</p>
+</div>
+
+<h2>7&nbsp;&nbsp;Conclusion</h2>
+
+<p>We have demonstrated that a scalar spectral entropy coordinate (Ksi) in the SVD-projected gate subspace of transformer MLP layers reliably predicts synthesis quality, that the quality maximum exhibits a characteristic phase transition signature (ksi_pre minimum at dividend maximum), and that quality-weighted Hebbian deposits at this address produce measurable behavioral change in one research cycle without gradient-based retraining.</p>
+
+<p>The finding that synthesis at Δ_c generates novel bridge concepts not present in any expert output — and that recursive synthesis at the same address produces emergent cognitive archetypes without explicit programming — suggests that the quality-maximum address is more than an optimization target. It may be the address where the model's weight geometry has maximum simultaneous access to all its conceptual resources.</p>
+
+<p>The practical instrument is now available: the dividend sweep locates Δ_c for any transformer with gate-structure MLPs in approximately 15 minutes on CPU-only hardware. The Hebbian deposit deepens the quality attractor in one research cycle. The English vector calibrates the natural language attractor in the same coordinate space.</p>
+
+<p>The null controls and cross-architecture replications in Section 6 are required before these findings can be considered fully established. The experimental infrastructure is available; the experiments are the next step. Code and logs are available at [GitHub — to be linked].</p>
+
+<h2>References</h2>
+
+<div class="refs">
+  <p>[1] Elhage, N. et al. (2021). A Mathematical Framework for Transformer Circuits. <em>Transformer Circuits Thread</em>.</p>
+  <p>[2] Olah, C. et al. (2020). Zoom In: An Introduction to Circuits. <em>Distill</em>.</p>
+  <p>[3] Elhage, N. et al. (2022). Softmax Linear Units. <em>Transformer Circuits Thread</em>.</p>
+  <p>[4] Conmy, A. et al. (2023). Towards Automated Circuit Discovery for Mechanistic Interpretability. <em>NeurIPS 2023</em>.</p>
+  <p>[5] Meng, K. et al. (2022). Locating and Editing Factual Associations in GPT. <em>NeurIPS 2022</em>.</p>
+  <p>[6] Meng, K. et al. (2023). Mass-Editing Memory in a Transformer. <em>ICLR 2023</em>.</p>
+  <p>[7] Zou, A. et al. (2023). Representation Engineering: A Top-Down Approach to AI Transparency. <em>arXiv:2310.01405</em>.</p>
+  <p>[8] Henighan, T. et al. (2020). Scaling Laws for Autoregressive Generative Modeling. <em>arXiv:2010.14701</em>.</p>
+  <p>[9] Yang, G. & Hu, E.J. (2021). Tensor Programs IV: Feature Learning in Infinite-Width Neural Networks. <em>ICML 2021</em>.</p>
+  <p>[10] Smith, K. (2026). The Fractal Architecture of Intelligence: Basin Topology, Spectral Entropy, and the Universal Principle of Synthesis. <em>Pirouette Framework Vol. 8, CORE-003</em>. [Companion paper]</p>
+</div>
+
+<div class="footnote">
+  <strong>Certification key:</strong>
+  <span class="badge cert">CERTIFIED</span> Replicated across ≥3 runs with consistent quantitative results.
+  <span class="badge cand">CANDIDATE</span> Observed; pass/fail criteria defined but replication pending.
+  <span class="badge open">OPEN</span> Pre-registered hypothesis; experiment not yet run.<br><br>
+  <strong>Model:</strong> GPT-2-Large (774M parameters) with Hebbian training cycles (Cycle-3 deposits + crust supervisor deposit + arc-1 deposit). Base model: <code>gpt2-large</code> from HuggingFace. All inference on CPU (32-core Windows, no GPU).<br><br>
+  <strong>Code:</strong> gem_pipeline.py, ml050_phase_transition.py, gem_interpreter.py, gem_deposit_arc.py, gem_selfgov.py, gem_english_vector.py, gem_pirouette_deposit.py. Available at [GitHub — link pending].<br><br>
+  <strong>Pirouette Framework Volume 8 · CORE-003 · Keaton Smith · June 2026</strong>
+</div>
+
+</body>
+</html>

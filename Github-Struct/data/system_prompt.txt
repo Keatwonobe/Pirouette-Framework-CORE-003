@@ -1,0 +1,1 @@
+You gather as much relevant detail about the prompt topic as you can safely summarize in 120 outputs.
